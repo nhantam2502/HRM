@@ -1,4 +1,4 @@
-import { Button, Layout, Tooltip } from "antd";
+import { Button, Input, Layout, Popover, Select, Table, Tooltip, Typography } from "antd";
 import PropTypes from "prop-types";
 import setImage from "../assets/logo-color.png"
 const { Header, Sider } = Layout;
@@ -7,7 +7,10 @@ import SidebarMenu from "./SidebarMenu/SidebarMenu";
 import HeaderMenu from "./Header/Header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MenuFoldOutlined, MenuUnfoldOutlined, TeamOutlined } from "@ant-design/icons";
+import { AlignCenterOutlined, ClockCircleOutlined, DeleteOutlined, DownloadOutlined, EditOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PlusOutlined, SearchOutlined, TeamOutlined } from "@ant-design/icons";
+import "../styles/Layout.css"
+
+const { Title } = Typography;
 
 function getItem(label, key, icon, children, type) {
   return {
@@ -63,6 +66,189 @@ const DefaultLayout = ({ children }) => {
 
   const handleHomePage = () => {
     navigate("/homepage");
+  };
+
+  const columns = [
+    {
+      title: "Intern ID",
+      dataIndex: "internId",
+
+    },
+    {
+      title: "Date submitted",
+      dataIndex: "dateSubmitted",
+
+    },
+    {
+      title: "Full name",
+      dataIndex: "fullName",
+
+    },
+    {
+      title: "DoB",
+      dataIndex: "dob",
+
+    },
+    {
+      title: "Phone number",
+      dataIndex: "phoneNumber",
+
+    },
+    {
+      title: "Position",
+      dataIndex: "position",
+
+    },
+    {
+      title: "School",
+      dataIndex: "school",
+
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+
+    },
+    {
+      title: "CV",
+      dataIndex: "cv",
+
+      render: (text, record) => (
+        <a href={text} target="_blank">
+          View
+        </a>
+      ),
+    },
+    {
+      title: "Comment",
+      dataIndex: "comment",
+
+      render: (text, record) => (
+        <Popover
+          content={<span style={{ whiteSpace: "pre-wrap" }}>{text}</span>}
+          title="Comment"
+          trigger="click"
+        >
+          <Button>View</Button>
+        </Popover>
+      ),
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+
+      render: (text, record) => (
+        <Select defaultValue="Pending">
+          <Select.Option value="accept" style={{ color: "green" }}>
+            Accept
+          </Select.Option>
+          <Select.Option value="reject" style={{ color: "red" }}>
+            Reject
+          </Select.Option>
+          <Select.Option value="pending" style={{ color: "yellow" }}>
+            Pending
+          </Select.Option>
+        </Select>
+      ),
+    },
+    {
+      title: "Buttons",
+      dataIndex: "buttons",
+
+      render: (text, record) => (
+        <div>
+          <Button style={{width:'100px', marginRight:'5px'}}>View</Button>
+          <Button style={{width:'100px'}}>Comment</Button>
+        </div>
+      ),
+    },
+  ];
+
+  const data = [
+    {
+      key: "1",
+      internId: "INTRN001",
+      dateSubmitted: "10 Dec 2024",
+      fullName: "John Doe",
+      dob: "1995-03-21",
+      phoneNumber: "+1234567890",
+      position: "Software Engineer Intern",
+      school: "MIT",
+      address: "123 Main St, Anytown, CA",
+      email: "john.doe@example.com",
+      cv: "path/to/cv.pdf",
+      comment: "Strong candidate with excellent coding skills.",
+    },
+    {
+      key: "2",
+      internId: "INTRN002",
+      dateSubmitted: "10 Dec 2024",
+      fullName: "John Doe",
+      dob: "1995-03-21",
+      phoneNumber: "+1234567890",
+      position: "Software Engineer Intern",
+      school: "MIT",
+      address: "123 Main St, Anytown, CA",
+      email: "john.doe@example.com",
+      cv: "path/to/cv.pdf",
+      comment: "Strong candidate with excellent coding skills.",
+    },
+    {
+      key: "3",
+      internId: "INTRN002",
+      dateSubmitted: "10 Dec 2024",
+      fullName: "John Doe",
+      dob: "1995-03-21",
+      phoneNumber: "+1234567890",
+      position: "Software Engineer Intern",
+      school: "MIT",
+      address: "123 Main St, Anytown, CA",
+      email: "john.doe@example.com",
+      cv: "path/to/cv.pdf",
+      comment: "Strong candidate with excellent coding skills.",
+    },
+    {
+      key: "4",
+      internId: "INTRN002",
+      dateSubmitted: "10 Dec 2024",
+      fullName: "John Doe",
+      dob: "1995-03-21",
+      phoneNumber: "+1234567890",
+      position: "Software Engineer Intern",
+      school: "MIT",
+      address: "123 Main St, Anytown, CA",
+      email: "john.doe@example.com",
+      cv: "path/to/cv.pdf",
+      comment: "Strong candidate with excellent coding skills.",
+    },
+  ];
+
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(
+        `selectedRowKeys: ${selectedRowKeys}`,
+        "selectedRows: ",
+        selectedRows
+      );
+    },
+    getCheckboxProps: (record) => ({
+      name: record.name,
+    }),
+  };
+
+  const buttonStyle = {
+    margin: "0 10px",
+    width:'120px'
+  };
+  const searchButton = {
+    flexBasis: "33%",
+    margin: "3px 0",
+    width: "100px",
   };
 
   return (
@@ -155,7 +341,8 @@ const DefaultLayout = ({ children }) => {
                   <HeaderMenu></HeaderMenu>
                 </div>
               </Header>
-              <Content
+
+              {/* <Content
                 style={{
                   margin: "24px 16px",
                   padding: 24,
@@ -164,8 +351,186 @@ const DefaultLayout = ({ children }) => {
                 }}
               >
                 {children && children}
-              </Content>
+              </Content> */}
+
+              <Content style={{ margin: "5px 16px" }}>
+            <div
+              className="topContentContainer"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: 20,
+                minHeight: 30,
+              }}
+            >
+              <div>
+              <Title level={2} style={{margin:'0'}}>Approve CV</Title>
+              </div>
+            </div>
+          </Content>
+
+          <Content style={{ margin: "10px 16px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: 24,
+                minHeight: 100,
+                borderRadius: 30,
+              }}
+            >
+              <div
+                style={{ display: "flex", alignItems: "center"}}
+              >
+                <Title level={3} style={{color:'grey',margin:'0'}}>Search for information</Title>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Button
+                  size="large"
+                  className="scheduleBtn"
+                  type="primary"
+                  icon={<ClockCircleOutlined />}
+                  style={buttonStyle}
+                >
+                  Schedule
+                </Button>
+                <Button
+                  size="large"
+                  className="exportBtn"
+                  type="primary"
+                  icon={<DownloadOutlined />}
+                  style={buttonStyle}
+                >
+                  Export
+                </Button>
+                <Button
+                  size="large"
+                  className="editBtn"
+                  type="primary"
+                  icon={<EditOutlined />}
+                  style={buttonStyle}
+                >
+                  Edit
+                </Button>
+                <Button
+                  size="large"
+                  className="deleteBtn"
+                  type="primary"
+                  icon={<DeleteOutlined />}
+                  style={buttonStyle}
+                >
+                  Delete
+                </Button>
+                <Button
+                  size="large"
+                  className="addBtn"
+                  type="primary"
+                  icon={<PlusOutlined />}
+                  style={buttonStyle}
+                >
+                  Add
+                </Button>
+              </div>
+            </div>
+          </Content>
+          
+          <Content style={{ margin: "0 16px" }}>
+            <div
+              style={{
+                padding: 24,
+                minHeight: 360,
+                borderRadius: 30,
+              }}
+            >
+              <div className="searchContainer" style={{ display: "flex" }}>
+                <div
+                  className="searchBar"
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                  <Input
+                    size="small"
+                    placeholder="Basic usage"
+                    style={searchButton}
+                  />
+                </div>
+                <div
+                  className="searchButton"
+                  style={{ marginLeft: "10px", display: "grid" }}
+                >
+                  <Button icon={<AlignCenterOutlined />}>Filter</Button>
+                  <Button type="primary" icon={<SearchOutlined />}>
+                    Search
+                  </Button>
+                </div>
+              </div>
+
+              <div className="tableContainer" style={{ marginTop: "20px" }}>
+                <Table
+                  className="tableLayout"
+                  tableLayout="auto"
+                  rowSelection={{
+                    type: "checkbox",
+                    ...rowSelection,
+                  }}
+                  columns={columns}
+                  dataSource={data}
+                />
+              </div>
+            </div>
+          </Content>
+
             </Layout>
+
           </Layout>
         </>
       )}

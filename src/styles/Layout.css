@@ -1,0 +1,74 @@
+.css-dev-only-do-not-override-p7e5j5.ant-layout.ant-layout-has-sider >.ant-layout{
+    width: auto;
+  }
+  
+  .ant-btn.ant-btn-primary.scheduleBtn {
+    background-color: purple !important;
+    color: #fff;
+  }
+  
+  .ant-btn.ant-btn-primary.exportBtn {
+    background-color: green !important;
+    color: #fff;
+  }
+  
+  .ant-btn.ant-btn-primary.editBtn {
+    background-color: orange !important;
+    color: #fff;
+  }
+  
+  .ant-btn.ant-btn-primary.deleteBtn {
+    background-color: red !important;
+    color: #fff;
+  }
+  
+  /* status button */
+  
+  .ant-select .ant-select-selector [title~="Pending"] {
+    color: yellow !important;
+  }
+  .ant-select .ant-select-selector [title~="Reject"] {
+    color: red !important;
+  }
+  .ant-select .ant-select-selector [title~="Accept"] {
+    color: green !important;
+  }
+  /* content style */
+  .ant-layout-content.css-dev-only-do-not-override-p7e5j5 > div {
+    background-color: #fff !important;
+  }
+  
+  .ant-layout-content.css-dev-only-do-not-override-p7e5j5 .topContentContainer {
+    background-color: #f5f5f5 !important;
+  }
+  
+  /* table style */
+  
+  .css-dev-only-do-not-override-p7e5j5[class^="ant-table"]{
+     text-wrap: nowrap;
+  }
+  
+  .tableLayout .ant-table-thead > tr > th {
+    background-color: #8aaae5 !important;
+    text-wrap: nowrap;
+    padding: 20px 10px;
+  }
+  
+  .ant-table-tbody > tr:nth-child(even) {
+    background-color: #f0f0f0;
+  }
+  
+  .ant-table-tbody > tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  
+  .ant-table-tbody > tr:nth-child(odd):hover > td  {
+  
+    background-color: #e6f4ff !important;
+  
+  }
+  
+  .ant-table-tbody > tr:nth-child(even):hover > td {
+    background-color: #e6f4ff !important;
+  }
+  
