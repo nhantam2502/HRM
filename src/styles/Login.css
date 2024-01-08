@@ -1,0 +1,10 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #E6E6FA;
+  }
+  .ant-picker-input input::placeholder {
+    color: #ffffff;
+  }
