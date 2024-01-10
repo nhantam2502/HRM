@@ -1,7 +1,4 @@
-.css-dev-only-do-not-override-p7e5j5.ant-layout.ant-layout-has-sider >.ant-layout{
-    width: auto;
-  }
-  
+
   .ant-btn.ant-btn-primary.scheduleBtn {
     background-color: purple !important;
     color: #fff;
@@ -43,13 +40,14 @@
   }
   
   /* table style */
+
   
   .css-dev-only-do-not-override-p7e5j5[class^="ant-table"]{
      text-wrap: nowrap;
   }
   
-  .tableLayout .ant-table-thead > tr > th {
-    background-color: #8aaae5 !important;
+  .tableLayout .ant-table-thead >tr>th{
+    background: #8aaae5 !important;
     text-wrap: nowrap;
     padding: 20px 10px;
   }
